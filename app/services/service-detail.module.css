@@ -1,0 +1,203 @@
+.hero {
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 900px;
+}
+
+.badge {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.82rem;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.title {
+  margin-top: 18px;
+  margin-bottom: 18px;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+}
+
+.description {
+  color: #4b5a6d;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.8;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.heroActions {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.secondaryLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border: 1px solid rgba(142, 74, 111, 0.2);
+  border-radius: 999px;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.section {
+  padding: 90px 0;
+}
+
+.sectionAlt {
+  padding: 90px 0;
+  background: var(--secondary-color);
+}
+
+.panel {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 34px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.sectionTitle {
+  margin-bottom: 16px;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+}
+
+.sectionText {
+  color: #556477;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+.bulletList {
+  display: grid;
+  gap: 10px;
+}
+
+.bulletList li {
+  background: #fff;
+  border: 1px solid rgba(142, 74, 111, 0.1);
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: #3f5063;
+}
+
+.panelImage {
+  width: 100%;
+  border-radius: 24px;
+  box-shadow: 0 20px 46px rgba(44, 62, 80, 0.12);
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 18px;
+  border: 1px solid rgba(44, 62, 80, 0.08);
+  padding: 20px;
+}
+
+.card h3 {
+  font-size: 1.12rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #5b6879;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.processGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.processCard {
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px;
+}
+
+.stepNum {
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.processCard h3 {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.processCard p {
+  color: #58677a;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.videoHeader {
+  margin-bottom: 20px;
+}
+
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.videoCard {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(44, 62, 80, 0.08);
+}
+
+.videoCard iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+.videoCard h3 {
+  padding: 14px 16px 18px;
+  font-size: 1rem;
+}
+
+.cta {
+  padding: 95px 0;
+  text-align: center;
+  background: linear-gradient(180deg, #ffffff 0%, #fdf5f2 100%);
+}
+
+.cta h2 {
+  margin-bottom: 12px;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.cta p {
+  max-width: 730px;
+  margin: 0 auto;
+  color: #556477;
+}
+
+@media (max-width: 900px) {
+  .panel,
+  .cardsGrid,
+  .processGrid,
+  .videoGrid {
+    grid-template-columns: 1fr;
+  }
+}
