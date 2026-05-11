@@ -1,8 +1,9 @@
+# Next.js on Netlify: use .next as publish dir (not repo root). Do not set
+# "Publish directory" to "." in the Netlify UI, and leave "Base directory" empty
+# unless this app lives in a monorepo subfolder.
 [build]
+  publish = ".next"
   command = "npm run build"
 
 [build.environment]
   NODE_VERSION = "20"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
