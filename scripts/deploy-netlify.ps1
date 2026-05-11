@@ -7,6 +7,8 @@
     2) PowerShell:  $env:NETLIFY_AUTH_TOKEN = "YOUR_TOKEN"
     3) In repo root (once):  npx --yes netlify-cli link
        (pick existing site or create new)
+  4) Netlify UI → Environment variables: remove NETLIFY_NEXT_PLUGIN_SKIP or set to "false"
+     (if "true", the Next runtime is off and every route shows Not Found)
 
   Then run from repo root:
     .\scripts\deploy-netlify.ps1
