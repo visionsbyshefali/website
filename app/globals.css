@@ -207,11 +207,12 @@ section {
   height: 42px;
   border: 1px solid rgba(44, 62, 80, 0.15);
   border-radius: 12px;
-  background: #fff;
+  background: transparent;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 5px;
+  transition: var(--transition-smooth);
 }
 
 .hamburger span {
@@ -406,9 +407,25 @@ section {
     pointer-events: auto;
   }
 
+  .light-text-header .nav-links .nav-link,
+  .nav-links .nav-link {
+    color: #394b62 !important;
+  }
+
+  .nav-links .nav-link::after {
+    background: var(--primary-color) !important;
+  }
+
   .nav-cta {
     width: 100%;
   }
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 60px;
 }
 
 @media (max-width: 768px) {
@@ -416,6 +433,11 @@ section {
   .grid-3,
   .grid-4 {
     grid-template-columns: 1fr;
+  }
+
+  /* Reset order for grid columns on mobile so text always sits above image */
+  .grid-2 > div {
+    order: unset !important;
   }
 
   .hero {
@@ -426,6 +448,25 @@ section {
     font-size: 2.45rem;
   }
 
+  .hero-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-btns {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .stats {
+    justify-content: center;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
   .section-title {
     font-size: 2rem;
   }
@@ -434,3 +475,62 @@ section {
     bottom: 22px;
   }
 }
+
+/* Specialized guidance cards */
+.specialized-card {
+  padding: 60px 50px;
+  background: #fafafa;
+  border-radius: 40px;
+  border: 1px solid #f0f0f0;
+  transition: var(--transition-smooth);
+}
+
+.specialized-card:hover {
+  background: #ffffff;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark Hero Banner Styling */
+.dark-hero {
+  color: #ffffff !important;
+}
+
+.dark-hero h1,
+.dark-hero h2,
+.dark-hero h3,
+.dark-hero h4,
+.dark-hero .hero-title,
+.dark-hero .section-title {
+  color: #ffffff !important;
+}
+
+.dark-hero p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.dark-hero span {
+  color: var(--accent-color) !important;
+}
+
+/* Dynamic transparent header text color on dark hero backgrounds */
+.light-text-header .logo {
+  color: #ffffff !important;
+}
+
+.light-text-header .nav-link {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.light-text-header .nav-link::after {
+  background: #ffffff !important;
+}
+
+.light-text-header .hamburger span {
+  background: #ffffff !important;
+}
+
+.light-text-header .hamburger {
+  border-color: rgba(255, 255, 255, 0.45) !important;
+}
+
+

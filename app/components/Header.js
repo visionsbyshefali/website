@@ -5,16 +5,16 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 export default function Header() {
+  const [isSticky, setIsSticky] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      const header = document.getElementById('main-header');
       if (window.scrollY > 50) {
-        header?.classList.add('sticky');
+        setIsSticky(true);
       } else {
-        header?.classList.remove('sticky');
+        setIsSticky(false);
       }
     };
 
@@ -35,8 +35,10 @@ export default function Header() {
     { href: '/contact', label: 'Contact' },
   ];
 
+  const isLightText = !isSticky && pathname !== '/';
+
   return (
-    <header id="main-header" className="sticky">
+    <header id="main-header" className={`${isSticky ? 'sticky' : ''} ${isLightText ? 'light-text-header' : ''}`}>
       <div className="container nav-container">
         <Link href="/" className="logo">
           VisionsByShefali

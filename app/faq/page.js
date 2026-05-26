@@ -7,14 +7,14 @@ const pageHtml = `
     <main>
         <!-- Page Title -->
         <section
-            style="min-height: 100vh; display: flex; align-items: center; position: relative; background: linear-gradient(rgba(255,255,255,0.56), rgba(255,255,255,0.56)), url('/assets/images/faq-bg.png'); background-size: cover; background-position: center; text-align: center;  opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;"
-            class="visible">
+            style="min-height: 100vh; display: flex; align-items: center; position: relative; background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%), url('/assets/images/faq-bg.png'); background-size: cover; background-position: center; text-align: center;  opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;"
+            class="hero visible dark-hero">
             <div class="container hero-content">
                 <span
-                    style="text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: var(--primary-color);">Helpful
+                    style="text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Helpful
                     Information</span>
-                <h1 style="font-size: 4.5rem; margin-top: 20px; margin-bottom: 25px;">Common Questions</h1>
-                <p style="font-size: 1.35rem; color: #444; max-width: 800px; margin: 0 auto;  line-height: 1.6;">Everything
+                <h1 class="hero-title">Common Questions</h1>
+                <p style="font-size: 1.35rem; max-width: 800px; margin: 0 auto;  line-height: 1.6;">Everything
                     you need to know before your first session. We believe in transparency and emotional safety.</p>
             </div>
         
@@ -75,7 +75,7 @@ const pageHtml = `
         <section
             style="padding: 100px 0px; background: var(--secondary-color);  opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;">
             <div class="container">
-                <h2 style="font-size: 3rem; margin-bottom: 30px;">Have More Questions?</h2>
+                <h2 class="section-title" style="margin-bottom: 30px;">Have More Questions?</h2>
                 <p style="font-size: 1.25rem; color: #555; max-width: 700px; margin: 0 auto 40px;">If you're unsure about
                     which session is right for you, feel free to reach out for a brief chat.</p>
                 <a href="/contact" class="btn">Connect with Shefali</a>

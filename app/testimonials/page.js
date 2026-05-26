@@ -7,18 +7,17 @@ const pageHtml = `
     <main>
         <!-- Page Title -->
         <section
-            style="min-height: 100vh; display: flex; align-items: center; position: relative; background: linear-gradient(rgba(255,255,255,0.56), rgba(255,255,255,0.56)), url('/assets/images/testimonials-bg.png'); background-size: cover; background-position: center; text-align: center;  opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;"
-            class="visible">
+            style="min-height: 100vh; display: flex; align-items: center; position: relative; background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%), url('/assets/images/testimonials-bg.png'); background-size: cover; background-position: center; text-align: center;  opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;"
+            class="hero visible dark-hero">
             <div class="container hero-content">
                 <span
-                    style="text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: var(--primary-color);">Testimonials</span>
-                <h1 style="font-size: 4.5rem; margin-top: 20px; margin-bottom: 25px;">Real Stories. <br>Real Healing.
-                </h1>
-                <p style="font-size: 1.35rem; color: #444; max-width: 800px; margin: 0 auto;  line-height: 1.6;">Shared
+                    style="text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Testimonials</span>
+                <h1 class="hero-title">Real Stories. <br>Real Healing.</h1>
+                <p style="font-size: 1.35rem; max-width: 800px; margin: 0 auto;  line-height: 1.6;">Shared
                     with permission, these are the experiences of those who have walked this path with us.</p>
                 <div style="margin-top: 40px; display: flex; justify-content: center; gap: 20px;">
                     <div style="">
-                        <strong style="font-size: 2.2rem; color: var(--primary-color); display: block;">500+</strong>
+                        <strong style="font-size: 2.2rem; color: #ffffff; display: block;">500+</strong>
                         <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Happy
                             Clients</span>
                     </div>
@@ -122,7 +121,7 @@ const pageHtml = `
         <section
             style="padding: 120px 0px; background: rgb(255, 255, 255);  opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;">
             <div class="container">
-                <h2 style="font-size: 3.2rem; margin-bottom: 30px;">Write Your Own Healing Story</h2>
+                <h2 class="section-title" style="margin-bottom: 30px;">Write Your Own Healing Story</h2>
                 <p style="font-size: 1.25rem; color: #555; max-width: 700px; margin: 0 auto 50px;">Every journey begins
                     with a single step toward awareness. Book a session to discover your inner clarity.</p>
                 <a href="/contact" class="btn">Discover the Clarity</a>

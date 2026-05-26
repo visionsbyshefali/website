@@ -7,14 +7,14 @@ const pageHtml = `
     <main>
         <!-- Page Title -->
         <section
-            style="min-height: 100vh; display: flex; align-items: center; position: relative; background: linear-gradient(rgba(255,255,255,0.56), rgba(255,255,255,0.56)), url('/assets/images/services-bg.png'); background-size: cover; background-position: center; text-align: center;  opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;"
-            class="visible">
+            style="min-height: 100vh; display: flex; align-items: center; position: relative; background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%), url('/assets/images/services-bg.png'); background-size: cover; background-position: center; text-align: center;  opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;"
+            class="hero visible dark-hero">
             <div class="container hero-content">
                 <span
-                    style="text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: var(--primary-color);">Our
+                    style="text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Our
                     Healing Modalities</span>
-                <h1 style="font-size: 4.5rem; margin-top: 20px; margin-bottom: 25px;">Services for Your <br>Journey</h1>
-                <p style="font-size: 1.35rem; color: #444; max-width: 800px; margin: 0 auto;  line-height: 1.6;">A gentle
+                <h1 class="hero-title">Services for Your <br>Journey</h1>
+                <p style="font-size: 1.35rem; max-width: 800px; margin: 0 auto;  line-height: 1.6;">A gentle
                     space for clarity, healing, and inner balance. Explore the ways we can walk this journey together.
                 </p>
             </div>
@@ -34,7 +34,7 @@ const pageHtml = `
                         <span
                             style="font-size: 0.9rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">45–90
                             min · Online · One-to-one</span>
-                        <h2 style="font-size: 3.5rem; margin: 20px 0 25px; font-family: var(--heading-font);">Tarot Sessions</h2>
+                        <h2 class="section-title" style="margin: 20px 0 25px; font-family: var(--heading-font);">Tarot Sessions</h2>
                         <p style="font-size: 1.2rem; color: #555; line-height: 1.8; margin-bottom: 35px;">Clarity and
                             guidance when you feel confused, emotionally overwhelmed, or unsure about your next step.
                             The cards reveal what your inner wisdom already knows. We dive deep into your questions and uncover hidden truths.</p>
@@ -55,7 +55,7 @@ const pageHtml = `
                         <span
                             style="font-size: 0.9rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">45–60
                             min · Online · One-to-one</span>
-                        <h2 style="font-size: 3.5rem; margin: 20px 0 25px; font-family: var(--heading-font);">Crystal Healing</h2>
+                        <h2 class="section-title" style="margin: 20px 0 25px; font-family: var(--heading-font);">Crystal Healing</h2>
                         <p style="font-size: 1.2rem; color: #555; line-height: 1.8; margin-bottom: 35px;">A gentle way
                             to balance your energy using the natural vibrations of crystals. Experience grounded peace
                             and emotional restoration through targeted energy work with sacred stones.</p>
@@ -76,7 +76,7 @@ const pageHtml = `
                         <span
                             style="font-size: 0.9rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">45–60
                             min · Online · One-to-one</span>
-                        <h2 style="font-size: 3.5rem; margin: 20px 0 25px; font-family: var(--heading-font);">Psychic Healing</h2>
+                        <h2 class="section-title" style="margin: 20px 0 25px; font-family: var(--heading-font);">Psychic Healing</h2>
                         <p style="font-size: 1.2rem; color: #555; line-height: 1.8; margin-bottom: 35px;">A deep
                             energetic cleanse to release heavy emotions, stress patterns, and restore your natural sense
                             of lightness and clarity. We work with your aura to remove blockages and stagnant energy.</p>
@@ -97,7 +97,7 @@ const pageHtml = `
                         <span
                             style="font-size: 0.9rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">45–60
                             min · Online · One-to-one</span>
-                        <h2 style="font-size: 3.5rem; margin: 20px 0 25px; font-family: var(--heading-font);">Reiki Healing</h2>
+                        <h2 class="section-title" style="margin: 20px 0 25px; font-family: var(--heading-font);">Reiki Healing</h2>
                         <p style="font-size: 1.2rem; color: #555; line-height: 1.8; margin-bottom: 35px;">A gentle Japanese energy healing practice that
                             promotes deep relaxation, stress reduction, and natural restoration. Experience the flow of healing energy that supports your body's innate healing ability.</p>
                         <a href="/services/reiki-healing" class="btn">Explore Session</a>
@@ -112,7 +112,7 @@ const pageHtml = `
                         <span
                             style="font-size: 0.9rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">45–60
                             min · Online · One-to-one</span>
-                        <h2 style="font-size: 3.5rem; margin: 20px 0 25px; font-family: var(--heading-font);">Sound Healing</h2>
+                        <h2 class="section-title" style="margin: 20px 0 25px; font-family: var(--heading-font);">Sound Healing</h2>
                         <p style="font-size: 1.2rem; color: #555; line-height: 1.8; margin-bottom: 35px;">Immerse in healing frequencies that clear mental
                             clutter and recalibrate your nervous system for peace. Let the vibrations of singing bowls and gongs guide you to harmony.</p>
                         <a href="/services/sound-healing" class="btn">Explore Session</a>
@@ -123,12 +123,12 @@ const pageHtml = `
 
                 <!-- More Services -->
                 <div style=" margin-top: 100px; margin-bottom: 60px;">
-                    <h2 style="font-size: 3rem; font-family: var(--heading-font);">Specialized Guidance</h2>
+                    <h2 class="section-title" style="font-family: var(--heading-font);">Specialized Guidance</h2>
                 </div>
 
                 <div class="grid-3">
                     <!-- PLR -->
-                    <div style="padding: 60px 50px; background: #fafafa; border-radius: 40px; border: 1px solid #f0f0f0; transition: var(--transition-smooth);" onmouseover="this.style.background='white'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.05)'" onmouseout="this.style.background='#fafafa'; this.style.boxShadow='none'">
+                    <div class="specialized-card">
                         <img src="/assets/images/service-plr.png" style="width: 100%; border-radius: 20px; margin-bottom: 30px;" />
                         <span style="font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">60–120 min</span>
                         <h3 style="margin: 15px 0; font-family: var(--heading-font); font-size: 1.8rem;">Past Life Regression</h3>
@@ -136,7 +136,7 @@ const pageHtml = `
                         <a href="/services/past-life-regression" style="font-weight: 600; color: var(--primary-color); text-decoration: none;">Learn More →</a>
                     </div>
                     <!-- Vastu -->
-                    <div style="padding: 60px 50px; background: #fafafa; border-radius: 40px; border: 1px solid #f0f0f0; transition: var(--transition-smooth);" onmouseover="this.style.background='white'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.05)'" onmouseout="this.style.background='#fafafa'; this.style.boxShadow='none'">
+                    <div class="specialized-card">
                         <img src="/assets/images/service-vastu.png" style="width: 100%; border-radius: 20px; margin-bottom: 30px;" />
                         <span style="font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">Personalized</span>
                         <h3 style="margin: 15px 0; font-family: var(--heading-font); font-size: 1.8rem;">Vastu Consulting</h3>
@@ -144,7 +144,7 @@ const pageHtml = `
                         <a href="/services/vastu" style="font-weight: 600; color: var(--primary-color); text-decoration: none;">Learn More →</a>
                     </div>
                     <!-- Numerology -->
-                    <div style="padding: 60px 50px; background: #fafafa; border-radius: 40px; border: 1px solid #f0f0f0; transition: var(--transition-smooth);" onmouseover="this.style.background='white'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.05)'" onmouseout="this.style.background='#fafafa'; this.style.boxShadow='none'">
+                    <div class="specialized-card">
                         <img src="/assets/images/service-numerology.png" style="width: 100%; border-radius: 20px; margin-bottom: 30px;" />
                         <span style="font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">45–60 min</span>
                         <h3 style="margin: 15px 0; font-family: var(--heading-font); font-size: 1.8rem;">Numerology & Name</h3>
@@ -162,8 +162,7 @@ const pageHtml = `
                 <span
                     style="text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: var(--primary-color);">Not
                     Sure Where to Start?</span>
-                <h2 style="font-size: 3.2rem; margin-top: 20px; margin-bottom: 30px; font-family: var(--heading-font);">Let's Find the Right Path Together
-                </h2>
+                <h2 class="section-title" style="margin-top: 20px; margin-bottom: 30px; font-family: var(--heading-font);">Let's Find the Right Path Together</h2>
                 <p style="font-size: 1.25rem; color: #555; max-width: 700px; margin: 0 auto 50px;">Reach out for a brief
                     conversation, and we can identify the most supportive modality for your unique journey.</p>
                 <a href="/contact" class="btn">Connect With Shefali</a>

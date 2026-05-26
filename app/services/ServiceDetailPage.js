@@ -31,7 +31,7 @@ export default function ServiceDetailPage({
       <section
         className={`hero visible ${styles.hero}`}
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.56), rgba(255,255,255,0.56)), url('${image}')`,
+          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%), url('${image}')`,
         }}
       >
         <div className={`container ${styles.heroContent}`}>

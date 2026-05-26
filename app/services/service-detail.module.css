@@ -1,5 +1,6 @@
 .hero {
   text-align: center;
+  color: #ffffff;
 }
 
 .heroContent {
@@ -10,7 +11,7 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 0.82rem;
-  color: var(--primary-color);
+  color: var(--accent-color);
   font-weight: 700;
 }
 
@@ -18,10 +19,11 @@
   margin-top: 18px;
   margin-bottom: 18px;
   font-size: clamp(2.4rem, 6vw, 4.2rem);
+  color: #ffffff;
 }
 
 .description {
-  color: #4b5a6d;
+  color: rgba(255, 255, 255, 0.85);
   font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.8;
   max-width: 760px;
@@ -41,10 +43,14 @@
   align-items: center;
   justify-content: center;
   padding: 12px 24px;
-  border: 1px solid rgba(142, 74, 111, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 999px;
-  color: var(--primary-color);
+  color: #ffffff;
   font-weight: 600;
+}
+
+.secondaryLink:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .section {

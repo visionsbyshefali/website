@@ -7,7 +7,7 @@ const pageHtml = `
     <main>
         <!-- Hero Section -->
         <section class="hero visible"
-            style="min-height: 100vh; background-image: url('assets/images/hero-bg.png'); opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;">
+            style="min-height: 100vh; background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%), url('/assets/images/hero-bg.png'); background-size: cover; background-position: center; opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;">
             <div class="container hero-content">
                 <span
                     style="text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: var(--primary-color); margin-bottom: 20px; display: block;">Visions By Shefali</span>
@@ -18,7 +18,7 @@ const pageHtml = `
                 <div class="hero-btns">
                     <a href="/contact" class="btn">Book a Session</a>
                 </div>
-                <div class="stats" style="display: flex; gap: 40px; margin-top: 60px;">
+                <div class="stats">
                     <div><strong style="font-size: 1.8rem; display: block; color: var(--primary-color);">500+</strong>
                         <span style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Happy
                             Clients</span></div>

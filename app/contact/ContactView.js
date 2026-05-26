@@ -236,7 +236,7 @@ export default function ContactView() {
         <div className="container">
           <div className="grid-2">
             <div>
-              <h2 style={{ fontSize: '3rem', marginBottom: '30px' }}>How to Reach Us</h2>
+              <h2 className="section-title" style={{ marginBottom: '30px' }}>How to Reach Us</h2>
               <div style={{ fontSize: '1.15rem', color: '#555', lineHeight: 1.8, marginBottom: '50px' }}>
                 <div style={{ marginBottom: '30px' }}>
                   <h4 style={{ color: 'var(--primary-color)', marginBottom: '10px' }}>Email</h4>
