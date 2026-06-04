@@ -38,6 +38,9 @@ export const metadata = {
     description:
       "Intuitive guidance and personalized healing sessions with Shefali Soni.",
   },
+  verification: {
+    google: "W6mD7wRXghDbbu4NWXhtXb-8KwupkMEm5JDj7OE8mmU",
+  },
 };
 
 export default function RootLayout({ children }) {
