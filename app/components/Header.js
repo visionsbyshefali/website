@@ -41,7 +41,7 @@ export default function Header() {
     <header id="main-header" className={`${isSticky ? 'sticky' : ''} ${isLightText ? 'light-text-header' : ''}`}>
       <div className="container nav-container">
         <Link href="/" className="logo">
-          VisionsByShefali
+          <img src="/assets/images/navbar-logo.png" alt="Visions By Shefali" style={{ height: '50px', width: 'auto', objectFit: 'contain' }} />
         </Link>
 
         <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
