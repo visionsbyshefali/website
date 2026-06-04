@@ -9,8 +9,6 @@ const pageHtml = `
         <section class="hero visible"
             style="min-height: 100vh; background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%), url('/assets/images/hero-bg.webp'); background-size: cover; background-position: center; opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;">
             <div class="container hero-content">
-                <span
-                    style="text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: var(--primary-color); margin-bottom: 20px; display: block;">Visions By Shefali</span>
                 <h1 class="hero-title">Heal, Grow &amp; <br>Thrive with <br>Intuitive Guidance</h1>
                 <p style="font-size: 1.25rem; margin-bottom: 40px; color: #444; max-width: 600px;">In this nurturing and
                     safe space, you're empowered to shape the life you envision — embracing healing and growth as we
