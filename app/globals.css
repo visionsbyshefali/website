@@ -532,5 +532,267 @@ section {
 .light-text-header .hamburger {
   border-color: rgba(255, 255, 255, 0.45) !important;
 }
+/* =============================================
+   WhatsApp Floating Button
+   ============================================= */
+@keyframes wa-pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  70% { transform: scale(1.55); opacity: 0; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
 
+.wa-floater {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px 14px 16px;
+  background: #25D366;
+  color: #fff;
+  border-radius: 999px;
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.4);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none;
+}
+
+.wa-floater:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 36px rgba(37, 211, 102, 0.5);
+  color: #fff;
+}
+
+.wa-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.wa-label {
+  white-space: nowrap;
+}
+
+.wa-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #25D366;
+  animation: wa-pulse 2.2s ease-out infinite;
+  z-index: -1;
+}
+
+@media (max-width: 600px) {
+  .wa-floater {
+    padding: 14px;
+    border-radius: 50%;
+    bottom: 20px;
+    right: 20px;
+  }
+  .wa-label {
+    display: none;
+  }
+}
+
+/* =============================================
+   Dark Hero — header gradient readability fix
+   ============================================= */
+.dark-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.38) 0%, transparent 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.dark-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* =============================================
+   Blog Styles
+   ============================================= */
+
+/* Blog card grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 32px;
+}
+
+.blog-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.blog-card {
+  background: #fff;
+  border-radius: 28px;
+  border: 1px solid #f0f0f0;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  border-color: rgba(142, 74, 111, 0.15);
+}
+
+.blog-card-body {
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.blog-category-badge {
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-family: var(--body-font);
+}
+
+.blog-read-time {
+  font-size: 0.8rem;
+  color: #999;
+  font-family: var(--body-font);
+}
+
+.blog-card-title {
+  font-size: 1.35rem;
+  line-height: 1.35;
+  margin-bottom: 14px;
+  color: var(--text-color);
+  font-family: var(--heading-font);
+  font-weight: 600;
+}
+
+.blog-card-title a {
+  color: inherit;
+}
+
+.blog-card-title a:hover {
+  color: var(--primary-color);
+}
+
+.blog-card-excerpt {
+  font-size: 0.97rem;
+  color: #666;
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 24px;
+}
+
+.blog-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.blog-date {
+  font-size: 0.82rem;
+  color: #aaa;
+}
+
+.blog-read-link {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--primary-color);
+}
+
+.blog-read-link:hover {
+  color: #6b3754;
+}
+
+/* Blog article body typography */
+.blog-article {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: #444;
+}
+
+.blog-article h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 50px 0 18px;
+  color: var(--primary-color);
+  font-family: var(--heading-font);
+}
+
+.blog-article h3 {
+  font-size: 1.25rem;
+  margin: 36px 0 14px;
+  color: var(--text-color);
+  font-family: var(--heading-font);
+}
+
+.blog-article p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.blog-article ul {
+  list-style: disc;
+  padding-left: 28px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.blog-article ul li {
+  color: #555;
+  line-height: 1.7;
+}
+
+.blog-article strong {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.blog-article em {
+  font-style: italic;
+  color: #666;
+}
+
+@media (max-width: 900px) {
+  .blog-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .blog-grid,
+  .blog-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-card-body {
+    padding: 26px 22px;
+  }
+}
 

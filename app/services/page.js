@@ -45,7 +45,7 @@ const pageHtml = `
                         </ul>
                         <a href="/services/tarot" class="btn">Explore Session</a>
                     </div>
-                    <div><img src="/assets/images/service-tarot.webp" alt="Tarot Session"
+                    <div><img src="/assets/images/service-tarot.webp" alt="Tarot Session" loading="eager" decoding="async"
                             style="width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.1);"></div>
                 </div>
 
@@ -66,7 +66,7 @@ const pageHtml = `
                         </ul>
                         <a href="/services/crystal-healing" class="btn">Explore Session</a>
                     </div>
-                    <div style="order: 1;"><img src="/assets/images/service-crystal.webp" alt="Crystal Healing"
+                    <div style="order: 1;"><img src="/assets/images/service-crystal.webp" alt="Crystal Healing" loading="lazy" decoding="async"
                             style="width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.1);"></div>
                 </div>
 
@@ -87,7 +87,7 @@ const pageHtml = `
                         </ul>
                         <a href="/services/psychic-healing" class="btn">Explore Session</a>
                     </div>
-                    <div><img src="/assets/images/service-psychic.webp" alt="Psychic Healing"
+                    <div><img src="/assets/images/service-psychic.webp" alt="Psychic Healing" loading="lazy" decoding="async"
                             style="width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.1);"></div>
                 </div>
 
@@ -100,9 +100,14 @@ const pageHtml = `
                         <h2 class="section-title" style="margin: 20px 0 25px; font-family: var(--heading-font);">Reiki Healing</h2>
                         <p style="font-size: 1.2rem; color: #555; line-height: 1.8; margin-bottom: 35px;">A gentle Japanese energy healing practice that
                             promotes deep relaxation, stress reduction, and natural restoration. Experience the flow of healing energy that supports your body's innate healing ability.</p>
+                        <ul style="list-style: none; padding: 0; margin-bottom: 40px; display: grid; gap: 15px;">
+                            <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Deep Relaxation</li>
+                            <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Stress Relief</li>
+                            <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Energy Restoration</li>
+                        </ul>
                         <a href="/services/reiki-healing" class="btn">Explore Session</a>
                     </div>
-                    <div style="order: 1;"><img src="/assets/images/treatment-reiki.webp" alt="Reiki Healing"
+                    <div style="order: 1;"><img src="/assets/images/treatment-reiki.webp" alt="Reiki Healing" loading="lazy" decoding="async"
                             style="width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.1);"></div>
                 </div>
 
@@ -115,9 +120,14 @@ const pageHtml = `
                         <h2 class="section-title" style="margin: 20px 0 25px; font-family: var(--heading-font);">Sound Healing</h2>
                         <p style="font-size: 1.2rem; color: #555; line-height: 1.8; margin-bottom: 35px;">Immerse in healing frequencies that clear mental
                             clutter and recalibrate your nervous system for peace. Let the vibrations of singing bowls and gongs guide you to harmony.</p>
+                        <ul style="list-style: none; padding: 0; margin-bottom: 40px; display: grid; gap: 15px;">
+                            <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Nervous System Reset</li>
+                            <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Mental Clarity</li>
+                            <li style="display: flex; align-items: center; gap: 10px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Vibrational Healing</li>
+                        </ul>
                         <a href="/services/sound-healing" class="btn">Explore Session</a>
                     </div>
-                    <div><img src="/assets/images/treatment-sound.webp" alt="Sound Healing"
+                    <div><img src="/assets/images/treatment-sound.webp" alt="Sound Healing" loading="lazy" decoding="async"
                             style="width: 100%; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.1);"></div>
                 </div>
 
@@ -129,7 +139,7 @@ const pageHtml = `
                 <div class="grid-3">
                     <!-- PLR -->
                     <div class="specialized-card">
-                        <img src="/assets/images/service-plr.webp" style="width: 100%; border-radius: 20px; margin-bottom: 30px;" />
+                        <img src="/assets/images/service-plr.webp" loading="lazy" decoding="async" style="width: 100%; border-radius: 20px; margin-bottom: 30px;" />
                         <span style="font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">60–120 min</span>
                         <h3 style="margin: 15px 0; font-family: var(--heading-font); font-size: 1.8rem;">Past Life Regression</h3>
                         <p style="color: #666; margin-bottom: 25px; line-height: 1.6;">A guided journey to find the root cause of current life patterns, fears, or soul connections through gentle hypnosis.</p>
@@ -137,7 +147,7 @@ const pageHtml = `
                     </div>
                     <!-- Vastu -->
                     <div class="specialized-card">
-                        <img src="/assets/images/service-vastu.webp" style="width: 100%; border-radius: 20px; margin-bottom: 30px;" />
+                        <img src="/assets/images/service-vastu.webp" loading="lazy" decoding="async" style="width: 100%; border-radius: 20px; margin-bottom: 30px;" />
                         <span style="font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">Personalized</span>
                         <h3 style="margin: 15px 0; font-family: var(--heading-font); font-size: 1.8rem;">Vastu Consulting</h3>
                         <p style="color: #666; margin-bottom: 25px; line-height: 1.6;">Align your living and working environment for better energy flow, bringing more peace, growth, and abundance.</p>
@@ -145,7 +155,7 @@ const pageHtml = `
                     </div>
                     <!-- Numerology -->
                     <div class="specialized-card">
-                        <img src="/assets/images/service-numerology.webp" style="width: 100%; border-radius: 20px; margin-bottom: 30px;" />
+                        <img src="/assets/images/service-numerology.webp" loading="lazy" decoding="async" style="width: 100%; border-radius: 20px; margin-bottom: 30px;" />
                         <span style="font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">45–60 min</span>
                         <h3 style="margin: 15px 0; font-family: var(--heading-font); font-size: 1.8rem;">Numerology & Name</h3>
                         <p style="color: #666; margin-bottom: 25px; line-height: 1.6;">Align your name and birth date vibrations with your life goals for a harmonious path and deeper self-understanding.</p>

@@ -42,7 +42,7 @@ export default function Footer() {
               <li><Link href="/services">Services</Link></li>
               <li><Link href="/about">About Shefali</Link></li>
               <li><Link href="/testimonials">Testimonials</Link></li>
-              <li><Link href="/faq">FAQ</Link></li>
+              <li><Link href="/blog">Blog</Link></li>
               <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>

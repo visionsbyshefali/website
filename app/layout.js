@@ -2,6 +2,7 @@ import "./globals.css";
 import ClientEffects from "./components/ClientEffects";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import WhatsAppFloater from "./components/WhatsAppFloater";
 
 export const metadata = {
   metadataBase: new URL("https://visionsbyshefali.com"),
@@ -47,6 +48,7 @@ export default function RootLayout({ children }) {
         <Header />
         {children}
         <Footer />
+        <WhatsAppFloater />
       </body>
     </html>
   );
