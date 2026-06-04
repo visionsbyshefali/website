@@ -7,7 +7,7 @@ const pageHtml = `
     <main>
         <!-- Page Title -->
         <section
-            style="min-height: 100vh; display: flex; align-items: center; position: relative; background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%), url('/assets/images/faq-bg.png'); background-size: cover; background-position: center; text-align: center;  opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;"
+            style="min-height: 100vh; display: flex; align-items: center; position: relative; background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%), url('/assets/images/faq-bg.webp'); background-size: cover; background-position: center; text-align: center;  opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;"
             class="hero visible dark-hero">
             <div class="container hero-content">
                 <span

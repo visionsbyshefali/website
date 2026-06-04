@@ -12,7 +12,7 @@ export default function Page() {
       badge="45–60 min · Online Session"
       title="Numerology & Name"
       description="Align your name and birth date vibrations with your life goals for a harmonious path and deeper self-understanding."
-      image="/assets/images/service-numerology.png"
+      image="/assets/images/service-numerology.webp"
       benefits={["Name vibration analysis", "Birth date insight", "Life path direction"]}
       highlights={[
         {

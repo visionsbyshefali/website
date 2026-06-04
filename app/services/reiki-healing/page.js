@@ -12,7 +12,7 @@ export default function Page() {
       badge="45–60 min · Online Session"
       title="Reiki Healing"
       description="A gentle Japanese energy healing practice that promotes deep relaxation, stress reduction, and natural restoration."
-      image="/assets/images/treatment-reiki.png"
+      image="/assets/images/treatment-reiki.webp"
       benefits={["Deep relaxation", "Stress reduction", "Inner energetic restoration"]}
       highlights={[
         {

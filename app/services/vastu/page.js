@@ -12,7 +12,7 @@ export default function Page() {
       badge="Personalized Assessment · Online"
       title="Vastu Consulting"
       description="Align your living and working environment for better energy flow, bringing more peace, growth, and abundance."
-      image="/assets/images/service-vastu.png"
+      image="/assets/images/service-vastu.webp"
       benefits={["Home alignment", "Office energy flow", "Spatial harmony recommendations"]}
       highlights={[
         {

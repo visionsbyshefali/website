@@ -207,10 +207,10 @@ export default function ContactView() {
         <div className="container hero-content">
           <span className={styles.tag}>Connect</span>
           <h1 className={styles.heroTitle}>Book Your Session</h1>
-          {/* <p className={styles.heroLead}>
+          <p className={styles.heroLead}>
             Begin your journey toward healing and clarity. Reach out for a private, confidential session
             tailored to your needs.
-          </p> */}
+          </p>
         </div>
 
         <div

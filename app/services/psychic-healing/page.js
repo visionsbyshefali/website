@@ -12,7 +12,7 @@ export default function Page() {
       badge="45–60 min · Online Session"
       title="Psychic Healing"
       description="A deep energetic cleanse to release heavy emotions, stress patterns, and restore your natural sense of lightness and clarity."
-      image="/assets/images/service-psychic.png"
+      image="/assets/images/service-psychic.webp"
       benefits={["Aura cleansing", "Energy blockage release", "Mental and emotional lightness"]}
       highlights={[
         {

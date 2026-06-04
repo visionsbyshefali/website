@@ -7,7 +7,7 @@ const pageHtml = `
     <main>
         <!-- Page Title & Hero Introduction -->
         <section
-            style="min-height: 100vh; display: flex; align-items: center; position: relative; background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%), url('/assets/images/about-bg.png'); background-size: cover; background-position: center; text-align: center;  opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;"
+            style="min-height: 100vh; display: flex; align-items: center; position: relative; background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%), url('/assets/images/about-bg.webp'); background-size: cover; background-position: center; text-align: center;  opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;"
             class="hero visible dark-hero">
             <div class="container hero-content">
                 <span
@@ -62,7 +62,7 @@ const pageHtml = `
                         <a href="/contact" class="btn">Begin Your Journey</a>
                     </div>
                     <div style="position: relative;">
-                        <img src="/assets/images/shefali-soni.png"
+                        <img src="/assets/images/shefali-soni.webp"
                             alt="Shefali Soni" style="width: 100%; border-radius: 40px;">
                     </div>
                 </div>

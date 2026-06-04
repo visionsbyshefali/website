@@ -12,7 +12,7 @@ export default function Page() {
       badge="45–60 min · Online Session"
       title="Crystal Healing"
       description="A gentle way to balance your energy using the natural vibrations of crystals for emotional calm and grounded healing."
-      image="/assets/images/service-crystal.png"
+      image="/assets/images/service-crystal.webp"
       benefits={["Chakra balancing", "Emotional reset", "Stress and overthinking relief"]}
       highlights={[
         {

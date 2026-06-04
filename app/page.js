@@ -7,7 +7,7 @@ const pageHtml = `
     <main>
         <!-- Hero Section -->
         <section class="hero visible"
-            style="min-height: 100vh; background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%), url('/assets/images/hero-bg.png'); background-size: cover; background-position: center; opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;">
+            style="min-height: 100vh; background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%), url('/assets/images/hero-bg.webp'); background-size: cover; background-position: center; opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;">
             <div class="container hero-content">
                 <span
                     style="text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: var(--primary-color); margin-bottom: 20px; display: block;">Visions By Shefali</span>
@@ -136,7 +136,7 @@ const pageHtml = `
             <div class="container">
                 <div class="grid-2">
                     <div class="guide-image-container">
-                        <img src="/assets/images/shefali-soni.png"
+                        <img src="/assets/images/shefali-soni.webp"
                             alt="Shefali Soni" class="guide-avatar">
                     </div>
                     <div>

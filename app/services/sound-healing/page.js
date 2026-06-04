@@ -12,7 +12,7 @@ export default function Page() {
       badge="45–60 min · Online Session"
       title="Sound Healing"
       description="Immerse in healing frequencies that clear mental clutter and recalibrate your nervous system for peace."
-      image="/assets/images/treatment-sound.png"
+      image="/assets/images/treatment-sound.webp"
       benefits={["Frequency alignment", "Nervous system calming", "Mental reset and stillness"]}
       highlights={[
         {

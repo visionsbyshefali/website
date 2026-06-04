@@ -12,7 +12,7 @@ export default function Page() {
       badge="60–120 min · Online Session"
       title="Past Life Regression"
       description="A guided journey to find root causes of current life patterns, fears, and soul connections through gentle subconscious work."
-      image="/assets/images/service-plr.png"
+      image="/assets/images/service-plr.webp"
       benefits={["Pattern identification", "Subconscious release", "Soul-level perspective"]}
       highlights={[
         {

@@ -12,7 +12,7 @@ export default function Page() {
       badge="45–90 min · Online Session"
       title="Tarot Sessions"
       description="Clarity and guidance when you feel confused, emotionally overwhelmed, or unsure about your next step."
-      image="/assets/images/service-tarot.png"
+      image="/assets/images/service-tarot.webp"
       benefits={["Relationship insights", "Career and life path clarity", "Decision support without fear"]}
       highlights={[
         {
