@@ -17,11 +17,22 @@ import {
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxjkxBTlh3Yx0zxvQ29ZxXpTskXZ6NeYFTfRFPTUtaQ6A_GiNkFXVTfwdJOwwvB97AL/exec";
 
 function buildCountryOptions() {
+  let regionNames;
+  try {
+    regionNames = new Intl.DisplayNames(['en'], {type: 'region'});
+  } catch (e) {
+    // Fallback if Intl is not available
+    regionNames = { of: (c) => c };
+  }
+
   return getCountries()
     .map((code) => {
-      let dial;
-      try { dial = getCountryCallingCode(code); } catch { return null; }
-      return { code, dial, label: `${code} (+${dial})` };
+      let dial, fullName;
+      try { 
+        dial = getCountryCallingCode(code); 
+        fullName = regionNames.of(code);
+      } catch { return null; }
+      return { code, dial, label: `${fullName} (+${dial})` };
     })
     .filter(Boolean)
     .sort((a, b) => a.label.localeCompare(b.label, 'en'));
@@ -108,6 +119,19 @@ export default function BookingClient() {
     });
   }, []);
 
+  const digits = useMemo(() => parseIncompletePhoneNumber(nationalInput), [nationalInput]);
+  const phoneValid = useMemo(() => {
+    if (!digits) return false;
+    return isValidPhoneNumber(digits, country);
+  }, [digits, country]);
+  
+  const lengthStatus = useMemo(() => {
+    if (!digits) return undefined;
+    return validatePhoneNumberLength(digits, country);
+  }, [digits, country]);
+
+  const phoneError = phoneTouched && Boolean(digits) && !phoneValid;
+
   const handleServiceSelect = (service) => {
     setSelectedService(service);
     setStep(1);
@@ -125,7 +149,14 @@ export default function BookingClient() {
       setIsLoadingTimes(true);
       try {
         const formattedDate = date.toLocaleDateString('en-CA'); // YYYY-MM-DD format for consistency
-        const res = await fetch(`${SCRIPT_URL}?action=getSlots&date=${formattedDate}`);
+        const serviceParam = selectedService ? selectedService.id : "";
+        
+        // Fetch with a small artificial delay so the beautiful skeleton loader is actually visible
+        const [res] = await Promise.all([
+          fetch(`${SCRIPT_URL}?action=getSlots&date=${formattedDate}&serviceId=${serviceParam}`),
+          new Promise(resolve => setTimeout(resolve, 800))
+        ]);
+        
         const data = await res.json();
         
         if (data.status === 'success' && data.slots) {
@@ -156,6 +187,13 @@ export default function BookingClient() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setPhoneTouched(true);
+    
+    if (!phoneValid || !digits) {
+      alert("Please enter a valid mobile number for the selected country.");
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
@@ -224,6 +262,11 @@ export default function BookingClient() {
             </div>
           </div>
         ))}
+        <div style={{ gridColumn: "1 / -1", textAlign: "center", marginTop: "10px", padding: "24px", background: "#fcfaf8", border: "1px dashed #d1c1b5", borderRadius: "16px", color: "#555" }}>
+           <span style={{ fontSize: "1.4rem", display: "block", marginBottom: "8px" }}>🔒</span>
+           <strong style={{ color: "var(--primary-color)", fontSize: "1.1rem" }}>Book your session now, pay later!</strong><br/>
+           <span style={{ fontSize: "0.95rem", lineHeight: "1.6", display: "block", marginTop: "5px" }}>There are absolutely no pre-booking charges. You will only pay the amount after your session is fully complete.</span>
+        </div>
         <style jsx>{`
           .booking-card { background: #fff; border: 1px solid #eaeaea; border-radius: 20px; padding: 30px; cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
           .booking-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); border-color: #d0d0d0; }
@@ -277,20 +320,39 @@ export default function BookingClient() {
                 </h4>
                 
                 {isLoadingTimes ? (
-                  <div style={{ padding: "20px", textAlign: "center", color: "#666" }}>Loading available slots...</div>
+                  <div className="skeleton-grid">
+                    {[1, 2, 3, 4, 5, 6].map((n) => (
+                      <div key={n} className="skeleton-slot"></div>
+                    ))}
+                  </div>
                 ) : availableTimes.length > 0 ? (
                   <div className="time-grid">
                     {availableTimes.map((slotItem, i) => {
-                      // Handle backward compatibility: if it's a string, assume available
+                      // Handle backward compatibility
                       const isObject = typeof slotItem === 'object' && slotItem !== null;
                       const rawTime = isObject ? slotItem.time : slotItem;
                       const status = isObject ? slotItem.status : 'available';
 
-                      // Fix weird Google Sheets 1899 dates if they appear
+                      // Extract exact time from ANY Google sheets raw string (e.g., SAT DEC 30 1899 21:45:00 GMT...)
                       let displayTime = rawTime;
-                      if (typeof rawTime === 'string' && rawTime.includes('1899-12-30T')) {
-                        const d = new Date(rawTime);
-                        displayTime = d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                      if (typeof rawTime === 'string') {
+                        const timeRegexMatch = rawTime.match(/(\d{1,2}):(\d{2}):(\d{2})/);
+                        if (timeRegexMatch && (rawTime.includes('1899') || rawTime.includes('GMT'))) {
+                          let h = parseInt(timeRegexMatch[1], 10);
+                          const m = timeRegexMatch[2];
+                          const ampm = h >= 12 ? 'PM' : 'AM';
+                          h = h % 12 || 12;
+                          const hStr = h.toString().padStart(2, '0');
+                          displayTime = `${hStr}:${m} ${ampm}`;
+                        } else if (timeRegexMatch && rawTime.includes('T')) {
+                           // Handle ISO strings correctly
+                           let h = parseInt(timeRegexMatch[1], 10);
+                           const m = timeRegexMatch[2];
+                           const ampm = h >= 12 ? 'PM' : 'AM';
+                           h = h % 12 || 12;
+                           const hStr = h.toString().padStart(2, '0');
+                           displayTime = `${hStr}:${m} ${ampm}`;
+                        }
                       }
 
                       // Check if time is in the past for TODAY
@@ -364,7 +426,7 @@ export default function BookingClient() {
           .react-calendar__tile:disabled { background-color: transparent; color: #ccc; }
 
           .time-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
-          .time-box { padding: 14px; border: 1px solid #e0e0e0; border-radius: 8px; text-align: center; cursor: pointer; font-size: 0.95rem; font-weight: 500; transition: all 0.2s; color: var(--primary-color); }
+          .time-box { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 72px; padding: 10px; border: 1px solid #e0e0e0; border-radius: 8px; text-align: center; cursor: pointer; font-size: 1rem; font-weight: 500; transition: all 0.2s; color: var(--primary-color); }
           .time-box:hover:not(.booked) { border-color: var(--primary-color); background: #fdf5f2; }
           .time-box.booked { opacity: 0.6; cursor: not-allowed; background: #f5f5f5; border-color: #ddd; color: #888; }
         `}</style>
@@ -392,12 +454,12 @@ export default function BookingClient() {
           <div className="form-group"><label>Email Address *</label><input type="email" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} /></div>
           
           <div className="form-group">
-            <label>Phone Number / WhatsApp</label>
-            <div style={{ display: 'flex', gap: '10px' }}>
+            <label>Phone Number / WhatsApp *</label>
+            <div className="phone-wrapper">
               <select
                 value={country}
                 onChange={onCountryChange}
-                style={{ width: '120px', padding: '12px', border: '1px solid #ccc', borderRadius: '8px', fontFamily: 'inherit', fontSize: '1rem', background: '#fff' }}
+                className="country-select"
               >
                 {countryOptions.map(({ code, label }) => (
                   <option key={code} value={code}>
@@ -412,13 +474,25 @@ export default function BookingClient() {
                 value={nationalInput}
                 onChange={onNationalChange}
                 onBlur={() => setPhoneTouched(true)}
-                style={{ flex: 1, padding: '12px', border: '1px solid #ccc', borderRadius: '8px', fontFamily: 'inherit', fontSize: '1rem' }}
+                className="national-input"
+                style={{ borderColor: phoneError ? '#d32f2f' : '#ccc' }}
               />
             </div>
+            {phoneError && (
+              <div className="field-error">
+                {lengthStatus === 'TOO_SHORT' ? 'Number is too short' : lengthStatus === 'TOO_LONG' ? 'Number is too long' : 'Invalid phone number for this country'}
+              </div>
+            )}
           </div>
 
           <div className="form-group"><label>Please share anything you'd like me to know before the session</label><textarea rows="4" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}></textarea></div>
           
+          <div className="pay-later-banner">
+            <span style={{ fontSize: "1.4rem", display: "block", marginBottom: "8px" }}>🔒</span>
+            <strong>Book now, pay later.</strong><br/>
+            <span>Zero upfront payment required. You will pay only after your session is complete.</span>
+          </div>
+
           {SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE" && (
             <div style={{ padding: "15px", background: "#fff3cd", color: "#856404", borderRadius: "8px", marginBottom: "20px", fontSize: "0.9rem" }}>
               <strong>Notice:</strong> Google Webhook URL is not set. The form will visually complete but won't save to the spreadsheet.
@@ -438,6 +512,26 @@ export default function BookingClient() {
           .submit-btn { background: var(--primary-color); color: #fff; border: none; width: 100%; padding: 16px; font-size: 1.1rem; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px; transition: 0.3s; }
           .submit-btn:hover { opacity: 0.9; }
           .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+          /* Skeleton Loader Grid */
+          .skeleton-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+          .skeleton-slot { height: 72px; width: 100%; border-radius: 8px; background: #eee; background: linear-gradient(90deg, #ececec 8%, #f5f5f5 18%, #ececec 33%); background-size: 200% 100%; animation: shimmer 1.5s infinite linear; border: 1px solid #e0e0e0; }
+          @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+          /* Phone input CSS */
+          .phone-wrapper { display: flex; gap: 10px; }
+          .country-select { width: 180px; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: inherit; font-size: 0.95rem; background: #fff; text-overflow: ellipsis; }
+          .national-input { flex: 1; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: inherit; font-size: 1rem; width: 100%; }
+          .field-error { color: #d32f2f; font-size: 0.85rem; margin-top: 6px; font-weight: 500; }
+
+          /* Banner */
+          .pay-later-banner { text-align: center; margin-bottom: 25px; padding: 20px; background: #fcfaf8; border-radius: 12px; border: 1px dashed #d1c1b5; color: #555; font-size: 0.95rem; line-height: 1.5; }
+          .pay-later-banner strong { color: var(--primary-color); font-size: 1.05rem; }
+
+          @media (max-width: 480px) {
+            .phone-wrapper { flex-direction: column; }
+            .country-select { width: 100%; }
+          }
         `}</style>
       </div>
     );
