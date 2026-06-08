@@ -1,11 +1,31 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import {
+  getCountries,
+  getCountryCallingCode,
+  formatIncompletePhoneNumber,
+  parseIncompletePhoneNumber,
+  validatePhoneNumberLength,
+  isValidPhoneNumber,
+  parsePhoneNumberFromString,
+} from 'libphonenumber-js';
 
 // NOTE: Replace this with your actual Google Apps Script Web App URL
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxjkxBTlh3Yx0zxvQ29ZxXpTskXZ6NeYFTfRFPTUtaQ6A_GiNkFXVTfwdJOwwvB97AL/exec";
+
+function buildCountryOptions() {
+  return getCountries()
+    .map((code) => {
+      let dial;
+      try { dial = getCountryCallingCode(code); } catch { return null; }
+      return { code, dial, label: `${code} (+${dial})` };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.label.localeCompare(b.label, 'en'));
+}
 
 const SERVICES = [
   {
@@ -62,8 +82,31 @@ export default function BookingClient() {
   const [selectedTime, setSelectedTime] = useState(null);
   
   // Form State
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", notes: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", notes: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const countryOptions = useMemo(() => buildCountryOptions(), []);
+  const [country, setCountry] = useState('IN');
+  const [nationalInput, setNationalInput] = useState('');
+  const [phoneTouched, setPhoneTouched] = useState(false);
+
+  const onNationalChange = useCallback((e) => {
+    const raw = e.target.value;
+    let nextDigits = parseIncompletePhoneNumber(raw);
+    while (nextDigits.length > 0 && validatePhoneNumberLength(nextDigits, country) === 'TOO_LONG') {
+      nextDigits = nextDigits.slice(0, -1);
+    }
+    setNationalInput(formatIncompletePhoneNumber(nextDigits, country));
+  }, [country]);
+
+  const onCountryChange = useCallback((e) => {
+    const next = e.target.value;
+    setCountry(next);
+    setNationalInput((prev) => {
+      const d = parseIncompletePhoneNumber(prev);
+      return d ? formatIncompletePhoneNumber(d, next) : '';
+    });
+  }, []);
 
   const handleServiceSelect = (service) => {
     setSelectedService(service);
@@ -116,6 +159,12 @@ export default function BookingClient() {
     setIsSubmitting(true);
     
     try {
+      let fullPhone = '';
+      if (nationalInput) {
+        const digits = parseIncompletePhoneNumber(nationalInput);
+        fullPhone = `+${getCountryCallingCode(country)} ${digits}`;
+      }
+
       const payload = {
         action: 'book',
         service: selectedService.title,
@@ -123,6 +172,7 @@ export default function BookingClient() {
         duration: selectedService.durationText,
         date: selectedDate ? selectedDate.toLocaleDateString('en-CA') : 'N/A',
         time: selectedTime || 'N/A',
+        phone: fullPhone,
         ...formData
       };
 
@@ -340,7 +390,33 @@ export default function BookingClient() {
         <form onSubmit={handleSubmit}>
           <div className="form-group"><label>Full Name *</label><input type="text" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} /></div>
           <div className="form-group"><label>Email Address *</label><input type="email" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} /></div>
-          <div className="form-group"><label>Phone Number / WhatsApp</label><input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} /></div>
+          
+          <div className="form-group">
+            <label>Phone Number / WhatsApp</label>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <select
+                value={country}
+                onChange={onCountryChange}
+                style={{ width: '120px', padding: '12px', border: '1px solid #ccc', borderRadius: '8px', fontFamily: 'inherit', fontSize: '1rem', background: '#fff' }}
+              >
+                {countryOptions.map(({ code, label }) => (
+                  <option key={code} value={code}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="tel"
+                inputMode="numeric"
+                placeholder="National number"
+                value={nationalInput}
+                onChange={onNationalChange}
+                onBlur={() => setPhoneTouched(true)}
+                style={{ flex: 1, padding: '12px', border: '1px solid #ccc', borderRadius: '8px', fontFamily: 'inherit', fontSize: '1rem' }}
+              />
+            </div>
+          </div>
+
           <div className="form-group"><label>Please share anything you'd like me to know before the session</label><textarea rows="4" value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})}></textarea></div>
           
           {SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE" && (
