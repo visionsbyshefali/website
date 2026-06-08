@@ -230,9 +230,52 @@ export default function BookingClient() {
                   <div style={{ padding: "20px", textAlign: "center", color: "#666" }}>Loading available slots...</div>
                 ) : availableTimes.length > 0 ? (
                   <div className="time-grid">
-                    {availableTimes.map((time, i) => (
-                      <div key={i} className="time-box" onClick={() => handleTimeSelect(time)}>{time}</div>
-                    ))}
+                    {availableTimes.map((rawTime, i) => {
+                      // Fix weird Google Sheets 1899 dates if they appear
+                      let displayTime = rawTime;
+                      if (rawTime.includes('1899-12-30T')) {
+                        const d = new Date(rawTime);
+                        displayTime = d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                      }
+
+                      // Check if time is in the past for TODAY
+                      let isPast = false;
+                      const now = new Date();
+                      if (selectedDate.toDateString() === now.toDateString()) {
+                        try {
+                          // Parse "10:00 AM" format
+                          const timeMatch = displayTime.match(/(\d+):(\d+)\s*(AM|PM)/i);
+                          if (timeMatch) {
+                            let hours = parseInt(timeMatch[1]);
+                            const minutes = parseInt(timeMatch[2]);
+                            const modifier = timeMatch[3].toUpperCase();
+                            if (modifier === 'PM' && hours < 12) hours += 12;
+                            if (modifier === 'AM' && hours === 12) hours = 0;
+                            
+                            const slotDate = new Date(now);
+                            slotDate.setHours(hours, minutes, 0, 0);
+                            
+                            if (slotDate < now) {
+                              isPast = true;
+                            }
+                          }
+                        } catch (e) {
+                          console.error("Error parsing time for past check", e);
+                        }
+                      }
+
+                      if (isPast) return null; // Don't show past times
+
+                      return (
+                        <div 
+                          key={i} 
+                          className="time-box" 
+                          onClick={() => handleTimeSelect(displayTime)}
+                        >
+                          {displayTime}
+                        </div>
+                      );
+                    })}
                   </div>
                 ) : (
                   <div style={{ padding: "20px", textAlign: "center", background: "#f9f9f9", borderRadius: "8px", color: "#888" }}>
