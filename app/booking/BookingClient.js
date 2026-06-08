@@ -5,7 +5,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
 // NOTE: Replace this with your actual Google Apps Script Web App URL
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzBoSIMyvQ5C4cWu4Gg-xXeL9C6-xq36grP0_mjHQfSOoDiaqucAyUGY-rC1i65plzC/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxjkxBTlh3Yx0zxvQ29ZxXpTskXZ6NeYFTfRFPTUtaQ6A_GiNkFXVTfwdJOwwvB97AL/exec";
 
 const SERVICES = [
   {
