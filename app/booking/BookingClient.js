@@ -125,20 +125,81 @@ export default function BookingClient() {
     return isValidPhoneNumber(digits, country);
   }, [digits, country]);
   
+  // Add browser back button & initial load support
+  useEffect(() => {
+    const handleUrlState = () => {
+      const path = window.location.pathname;
+      const parts = path.split('/').filter(Boolean); // e.g. ['booking', 'clarity-call', 'calendar']
+      
+      if (parts.length >= 2 && parts[0] === 'booking') {
+        const slug = parts[1];
+        const foundService = SERVICES.find(s => s.id.replace(/_/g, '-') === slug);
+        if (foundService) {
+          setSelectedService(foundService);
+          const currentTab = parts[2] || '';
+          if (currentTab === 'details') {
+            setStep(2);
+          } else if (currentTab === 'calendar' || currentTab === '') {
+            setStep(foundService.durationMins === 0 ? 2 : 1);
+          } else {
+            setStep(0);
+          }
+          return;
+        }
+      }
+      // Default to start
+      setStep(0);
+      setSelectedService(null);
+    };
+
+    // Run once on mount to handle direct links / refreshes
+    handleUrlState();
+
+    window.addEventListener('popstate', handleUrlState);
+    return () => window.removeEventListener('popstate', handleUrlState);
+  }, []);
+
+  const handleServiceSelect = (service) => {
+    setSelectedService(service);
+    const slug = service.id.replace(/_/g, '-');
+    if (service.durationMins === 0) {
+      setStep(2); // Jump to form
+      window.history.pushState(null, '', `/booking/${slug}/details`);
+    } else {
+      setStep(1); // Go to calendar
+      window.history.pushState(null, '', `/booking/${slug}/calendar`);
+    }
+  };
+
+  const handleTimeSelect = (time) => {
+    setSelectedTime(time);
+    setStep(2);
+    const slug = selectedService.id.replace(/_/g, '-');
+    window.history.pushState(null, '', `/booking/${slug}/details`);
+  };
+
+  const handleBackToServices = () => {
+    setStep(0);
+    setSelectedService(null);
+    setSelectedDate(null);
+    setSelectedTime(null);
+    setAvailableTimes([]);
+    window.history.pushState(null, '', '/booking');
+  };
+
+  const handleBackToCalendar = () => {
+    setStep(1);
+    setSelectedTime(null);
+    const slug = selectedService.id.replace(/_/g, '-');
+    window.history.pushState(null, '', `/booking/${slug}/calendar`);
+  };
+
   const lengthStatus = useMemo(() => {
     if (!digits) return undefined;
     return validatePhoneNumberLength(digits, country);
   }, [digits, country]);
 
   const phoneError = phoneTouched && Boolean(digits) && !phoneValid;
-
-  const handleServiceSelect = (service) => {
-    setSelectedService(service);
-    setStep(1);
-    setSelectedDate(null);
-    setSelectedTime(null);
-    setAvailableTimes([]);
-  };
 
   const handleDateChange = async (date) => {
     setSelectedDate(date);
@@ -176,10 +237,7 @@ export default function BookingClient() {
     }
   };
 
-  const handleTimeSelect = (time) => {
-    setSelectedTime(time);
-    setStep(2);
-  };
+
 
   const handleBack = () => {
     if (step > 0) setStep(step - 1);
@@ -200,7 +258,7 @@ export default function BookingClient() {
       let fullPhone = '';
       if (nationalInput) {
         const digits = parseIncompletePhoneNumber(nationalInput);
-        fullPhone = `+${getCountryCallingCode(country)} ${digits}`;
+        fullPhone = `${getCountryCallingCode(country)}${digits}`;
       }
 
       const payload = {
@@ -241,7 +299,7 @@ export default function BookingClient() {
   // -------------------------------------------------------------
   if (step === 0) {
     return (
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "25px" }}>
+      <div className="service-grid">
         {SERVICES.map((s) => (
           <div key={s.id} className="booking-card" onClick={() => handleServiceSelect(s)}>
             <div style={{ color: "#666", fontSize: "0.9rem", marginBottom: "15px" }}>
@@ -268,6 +326,8 @@ export default function BookingClient() {
            <span style={{ fontSize: "0.95rem", lineHeight: "1.6", display: "block", marginTop: "5px" }}>There are absolutely no pre-booking charges. You will only pay the amount after your session is fully complete.</span>
         </div>
         <style jsx>{`
+          .service-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+          @media (max-width: 768px) { .service-grid { grid-template-columns: 1fr; } }
           .booking-card { background: #fff; border: 1px solid #eaeaea; border-radius: 20px; padding: 30px; cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
           .booking-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); border-color: #d0d0d0; }
         `}</style>
@@ -320,9 +380,9 @@ export default function BookingClient() {
                 </h4>
                 
                 {isLoadingTimes ? (
-                  <div className="skeleton-grid">
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))", gap: "12px" }}>
                     {[1, 2, 3, 4, 5, 6].map((n) => (
-                      <div key={n} className="skeleton-slot"></div>
+                      <div key={n} style={{ height: "72px", width: "100%", borderRadius: "8px", background: "#e0e0e0", animation: "pulse 1.5s infinite" }}></div>
                     ))}
                   </div>
                 ) : availableTimes.length > 0 ? (
@@ -429,6 +489,8 @@ export default function BookingClient() {
           .time-box { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 72px; padding: 10px; border: 1px solid #e0e0e0; border-radius: 8px; text-align: center; cursor: pointer; font-size: 1rem; font-weight: 500; transition: all 0.2s; color: var(--primary-color); }
           .time-box:hover:not(.booked) { border-color: var(--primary-color); background: #fdf5f2; }
           .time-box.booked { opacity: 0.6; cursor: not-allowed; background: #f5f5f5; border-color: #ddd; color: #888; }
+          
+          @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
         `}</style>
       </div>
     );
@@ -506,17 +568,12 @@ export default function BookingClient() {
           .booking-modal { background: #fff; border-radius: 24px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
           .back-btn { background: none; border: none; color: #666; cursor: pointer; margin-bottom: 20px; font-weight: 500;}
           .form-group { margin-bottom: 20px; }
-          label { display: block; margin-bottom: 8px; font-size: 0.95rem; color: #444; font-weight: 500; }
-          input, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: inherit; font-size: 1rem;}
-          input:focus, textarea:focus { border-color: var(--primary-color); outline: none; }
-          .submit-btn { background: var(--primary-color); color: #fff; border: none; width: 100%; padding: 16px; font-size: 1.1rem; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 10px; transition: 0.3s; }
+          .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: #444; font-size: 0.95rem; }
+          .form-group input, .form-group textarea { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 1rem; background: #fafafa; transition: border-color 0.2s; }
+          .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color); background: #fff; }
+          .submit-btn { background: var(--primary-color); color: #fff; border: none; padding: 16px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.2s; font-family: inherit; margin-top: 10px; width: 100%; }
           .submit-btn:hover { opacity: 0.9; }
           .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-
-          /* Skeleton Loader Grid */
-          .skeleton-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
-          .skeleton-slot { height: 72px; width: 100%; border-radius: 8px; background: #eee; background: linear-gradient(90deg, #ececec 8%, #f5f5f5 18%, #ececec 33%); background-size: 200% 100%; animation: shimmer 1.5s infinite linear; border: 1px solid #e0e0e0; }
-          @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
 
           /* Phone input CSS */
           .phone-wrapper { display: flex; gap: 10px; }

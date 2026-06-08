@@ -35,7 +35,7 @@ export default function Header() {
     { href: '/contact', label: 'Contact' },
   ];
 
-  const isLightText = !isSticky && pathname !== '/';
+  const isLightText = !isSticky && pathname !== '/' && !pathname.includes('/booking');
 
   return (
     <header id="main-header" className={`${isSticky ? 'sticky' : ''} ${isLightText ? 'light-text-header' : ''}`}>

@@ -90,9 +90,7 @@ export default function ContactView() {
 
   const phoneForEmail = useMemo(() => {
     if (!digits) return '';
-    const parsed = parsePhoneNumberFromString(digits, country);
-    if (parsed?.isValid()) return parsed.formatInternational();
-    return `+${getCountryCallingCode(country)} ${digits}`;
+    return `${getCountryCallingCode(country)}${digits}`;
   }, [digits, country]);
 
   const onNationalChange = useCallback(
@@ -206,10 +204,9 @@ export default function ContactView() {
       <section className={`${styles.sectionHero} dark-hero visible`}>
         <div className="container hero-content">
           <span className={styles.tag}>Connect</span>
-          <h1 className={styles.heroTitle}>Book Your Session</h1>
+          <h1 className={styles.heroTitle}>Get in Touch</h1>
           <p className={styles.heroLead}>
-            Begin your journey toward healing and clarity. Reach out for a private, confidential session
-            tailored to your needs.
+            We'd love to hear from you. Have a question about a specific reading or need general guidance? Reach out to us today.
           </p>
         </div>
 
@@ -296,116 +293,111 @@ export default function ContactView() {
             </div>
 
             <div className={styles.formCard}>
-              <h3>Inquiry Form</h3>
-              <form id="contact-form" onSubmit={handleSubmit} noValidate>
-                <div className={styles.field}>
-                  <label className={styles.label} htmlFor="inq-name">
-                    Full Name
-                  </label>
-                  <input
-                    id="inq-name"
-                    name="from_name"
-                    type="text"
-                    placeholder="Your name"
-                    className={styles.input}
-                    autoComplete="name"
-                    value={name}
-                    onChange={(ev) => setName(ev.target.value)}
-                    required
-                  />
-                </div>
-                <div className={styles.field}>
-                  <label className={styles.label} htmlFor="inq-email">
-                    Email Address
-                  </label>
-                  <input
-                    id="inq-email"
-                    name="user_email"
-                    type="email"
-                    placeholder="email@example.com"
-                    className={styles.input}
-                    autoComplete="email"
-                    value={email}
-                    onChange={(ev) => setEmail(ev.target.value)}
-                    required
-                  />
-                </div>
+                <form id="contact-form" onSubmit={handleSubmit} noValidate>
+                  <div className={styles.formGrid}>
+                    <div className={styles.field}>
+                      <label className={styles.label} htmlFor="inq-name">
+                        Full Name <span style={{ color: 'red' }}>*</span>
+                      </label>
+                      <input
+                        id="inq-name"
+                        name="from_name"
+                        type="text"
+                        placeholder="Your name"
+                        className={styles.input}
+                        autoComplete="name"
+                        value={name}
+                        onChange={(ev) => setName(ev.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className={styles.field}>
+                      <label className={styles.label} htmlFor="inq-email">
+                        Email Address <span style={{ color: 'red' }}>*</span>
+                      </label>
+                      <input
+                        id="inq-email"
+                        name="user_email"
+                        type="email"
+                        placeholder="email@example.com"
+                        className={styles.input}
+                        autoComplete="email"
+                        value={email}
+                        onChange={(ev) => setEmail(ev.target.value)}
+                        required
+                      />
+                    </div>
 
-                <div className={styles.field}>
-                  <label className={styles.label} htmlFor="inq-phone">
-                    Mobile number
-                  </label>
-                  <div className={styles.phoneRow}>
-                    <div className={styles.countryWrap}>
+                    <div className={styles.field}>
+                      <label className={styles.label} htmlFor="inq-phone">
+                        Mobile number <span style={{ color: 'red' }}>*</span>
+                      </label>
+                      <div className={styles.phoneRow}>
+                        <div className={styles.countryWrap}>
+                          <select
+                            id="inq-country"
+                            name="phone_country"
+                            className={styles.countrySelect}
+                            value={country}
+                            onChange={onCountryChange}
+                            aria-label="Country calling code"
+                          >
+                            {countryOptions.map(({ code, label }) => (
+                              <option key={code} value={code}>
+                                {label}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                        <div className={styles.nationalWrap}>
+                          <input
+                            id="inq-phone"
+                            name="phone_national"
+                            type="tel"
+                            inputMode="numeric"
+                            autoComplete="tel-national"
+                            placeholder="National number"
+                            className={styles.input}
+                            value={formattedNational}
+                            onChange={onNationalChange}
+                            onBlur={() => setPhoneTouched(true)}
+                            aria-invalid={phoneError || undefined}
+                            aria-describedby="inq-phone-hint"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      {phoneError && (
+                        <p className={styles.fieldError} role="alert">
+                          {lengthStatus === 'TOO_SHORT'
+                            ? 'Number is too short'
+                            : lengthStatus === 'TOO_LONG'
+                              ? 'Number is too long'
+                              : 'Invalid phone number for this country'}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className={styles.field}>
+                      <label className={styles.label} htmlFor="inq-service">
+                        Service of Interest
+                      </label>
                       <select
-                        id="inq-country"
-                        name="phone_country"
-                        className={styles.countrySelect}
-                        value={country}
-                        onChange={onCountryChange}
-                        aria-label="Country calling code"
+                        id="inq-service"
+                        name="service"
+                        className={styles.select}
+                        value={service}
+                        onChange={(ev) => setService(ev.target.value)}
                       >
-                        {countryOptions.map(({ code, label }) => (
-                          <option key={code} value={code}>
-                            {label}
+                        {SERVICE_OPTIONS.map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
                           </option>
                         ))}
                       </select>
                     </div>
-                    <div className={styles.nationalWrap}>
-                      <input
-                        id="inq-phone"
-                        name="phone_national"
-                        type="tel"
-                        inputMode="numeric"
-                        autoComplete="tel-national"
-                        placeholder="National number"
-                        className={styles.input}
-                        value={formattedNational}
-                        onChange={onNationalChange}
-                        onBlur={() => setPhoneTouched(true)}
-                        aria-invalid={phoneError || undefined}
-                        aria-describedby="inq-phone-hint"
-                        required
-                      />
-                    </div>
                   </div>
-                  <p id="inq-phone-hint" className={styles.fieldHint}>
-                    Country codes and number lengths follow{' '}
-                    <a href="https://github.com/google/libphonenumber" target="_blank" rel="noopener noreferrer">
-                      Google libphonenumber
-                    </a>{' '}
-                    (via libphonenumber-js). Selected: +{getCountryCallingCode(country)}.
-                  </p>
-                  {phoneError && (
-                    <p className={styles.fieldError} role="alert">
-                      {lengthStatus === 'TOO_SHORT'
-                        ? 'This number looks too short for the selected country.'
-                        : lengthStatus === 'TOO_LONG'
-                          ? 'Too many digits for the selected country.'
-                          : 'Please enter a valid phone number for this country.'}
-                    </p>
-                  )}
-                </div>
-
-                <div className={styles.field}>
-                  <label className={styles.label} htmlFor="inq-service">
-                    Service of Interest
-                  </label>
-                  <select
-                    id="inq-service"
-                    name="service"
-                    className={styles.select}
-                    value={service}
-                    onChange={(ev) => setService(ev.target.value)}
-                  >
-                    {SERVICE_OPTIONS.map((opt) => (
-                      <option key={opt} value={opt}>
-                        {opt}
-                      </option>
-                    ))}
-                  </select>
-                </div>
                 <div className={styles.fieldMessage}>
                   <label className={styles.label} htmlFor="inq-message">
                     Your Message
