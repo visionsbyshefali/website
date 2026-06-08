@@ -7,8 +7,8 @@ export const metadata = {
 
 export default function BookingPage() {
   return (
-    <main style={{ minHeight: "100vh", backgroundColor: "#fdf5f2", padding: "120px 20px" }}>
-      <div className="container" style={{ maxWidth: "1000px" }}>
+    <main style={{ minHeight: "100vh", backgroundColor: "#fdf5f2", padding: "120px 20px", overflowX: "hidden", boxSizing: "border-box" }}>
+      <div className="container" style={{ maxWidth: "1000px", width: "100%" }}>
         <div style={{ textAlign: "center", marginBottom: "50px" }}>
           <h1 style={{ fontFamily: "var(--heading-font)", fontSize: "2.5rem", color: "var(--primary-color)" }}>
             Book Your Session

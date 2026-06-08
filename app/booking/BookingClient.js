@@ -350,8 +350,8 @@ export default function BookingClient() {
         <button onClick={handleBack} className="back-btn">← Back</button>
         <div className="booking-split">
           <div className="booking-left">
-            <h2 style={{ fontSize: "1.8rem", marginBottom: "25px", display: "flex", alignItems: "center", gap: "10px" }}>
-              {selectedService.icon} {selectedService.title}
+            <h2 style={{ fontSize: "1.8rem", marginBottom: "25px", display: "flex", alignItems: "flex-start", flexWrap: "wrap", gap: "10px", wordBreak: "break-word" }}>
+              <span>{selectedService.icon}</span> <span>{selectedService.title}</span>
             </h2>
             <div style={{ display: "flex", gap: "30px", marginBottom: "30px", paddingBottom: "20px", borderBottom: "1px solid #eee" }}>
               <div style={{ fontWeight: "600", fontSize: "1.1rem" }}>{selectedService.price}</div>
@@ -470,7 +470,15 @@ export default function BookingClient() {
           .booking-modal { background: #fff; border-radius: 24px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
           .back-btn { background: none; border: none; color: #666; cursor: pointer; font-size: 1rem; margin-bottom: 30px; font-weight: 500; }
           .booking-split { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
-          @media (max-width: 768px) { .booking-split { grid-template-columns: 1fr; gap: 40px; } .booking-modal { padding: 20px; } }
+          @media (max-width: 768px) { 
+            .booking-split { grid-template-columns: 1fr; gap: 30px; } 
+            .booking-modal { padding: 24px 16px !important; width: 100%; box-sizing: border-box; overflow-x: hidden; } 
+            .booking-left h2 { font-size: 1.4rem !important; flex-wrap: wrap; word-break: break-word; }
+            .booking-left p { font-size: 0.95rem !important; line-height: 1.6 !important; word-break: break-word; }
+            .calendar-container { padding: 10px !important; overflow-x: hidden; }
+            .time-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+            .time-box { font-size: 0.9rem !important; min-height: 60px !important; padding: 6px !important; }
+          }
           
           /* Custom Calendar Styles */
           .calendar-container { padding: 15px; border: 1px solid #eaeaea; border-radius: 16px; background: #fff; }
