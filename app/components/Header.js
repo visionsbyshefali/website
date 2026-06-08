@@ -57,7 +57,7 @@ export default function Header() {
             </li>
           ))}
           <li>
-            <Link href="/contact" className="btn nav-cta" onClick={() => setIsMenuOpen(false)}>
+            <Link href="/booking" className="btn nav-cta" onClick={() => setIsMenuOpen(false)}>
               Book Session
             </Link>
           </li>
