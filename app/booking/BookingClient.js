@@ -230,10 +230,15 @@ export default function BookingClient() {
                   <div style={{ padding: "20px", textAlign: "center", color: "#666" }}>Loading available slots...</div>
                 ) : availableTimes.length > 0 ? (
                   <div className="time-grid">
-                    {availableTimes.map((rawTime, i) => {
+                    {availableTimes.map((slotItem, i) => {
+                      // Handle backward compatibility: if it's a string, assume available
+                      const isObject = typeof slotItem === 'object' && slotItem !== null;
+                      const rawTime = isObject ? slotItem.time : slotItem;
+                      const status = isObject ? slotItem.status : 'available';
+
                       // Fix weird Google Sheets 1899 dates if they appear
                       let displayTime = rawTime;
-                      if (rawTime.includes('1899-12-30T')) {
+                      if (typeof rawTime === 'string' && rawTime.includes('1899-12-30T')) {
                         const d = new Date(rawTime);
                         displayTime = d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
                       }
@@ -243,7 +248,6 @@ export default function BookingClient() {
                       const now = new Date();
                       if (selectedDate.toDateString() === now.toDateString()) {
                         try {
-                          // Parse "10:00 AM" format
                           const timeMatch = displayTime.match(/(\d+):(\d+)\s*(AM|PM)/i);
                           if (timeMatch) {
                             let hours = parseInt(timeMatch[1]);
@@ -266,13 +270,16 @@ export default function BookingClient() {
 
                       if (isPast) return null; // Don't show past times
 
+                      const isBooked = status === 'booked';
+
                       return (
                         <div 
                           key={i} 
-                          className="time-box" 
-                          onClick={() => handleTimeSelect(displayTime)}
+                          className={`time-box ${isBooked ? 'booked' : ''}`} 
+                          onClick={() => !isBooked && handleTimeSelect(displayTime)}
                         >
                           {displayTime}
+                          {isBooked && <div style={{ fontSize: "0.75rem", marginTop: "4px", color: "#999", fontWeight: "normal" }}>Booked</div>}
                         </div>
                       );
                     })}
@@ -308,7 +315,8 @@ export default function BookingClient() {
 
           .time-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
           .time-box { padding: 14px; border: 1px solid #e0e0e0; border-radius: 8px; text-align: center; cursor: pointer; font-size: 0.95rem; font-weight: 500; transition: all 0.2s; color: var(--primary-color); }
-          .time-box:hover { border-color: var(--primary-color); background: #fdf5f2; }
+          .time-box:hover:not(.booked) { border-color: var(--primary-color); background: #fdf5f2; }
+          .time-box.booked { opacity: 0.6; cursor: not-allowed; background: #f5f5f5; border-color: #ddd; color: #888; }
         `}</style>
       </div>
     );
