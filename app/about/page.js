@@ -91,7 +91,7 @@ const pageHtml = `
                     <div
                         style="padding: 50px; background: white; border-radius: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); border: 1px solid #f2f2f2;">
                         <h4 style="margin-bottom: 15px;">Emotionally Supportive</h4>
-                        <p style="font-size: 0.95rem; color: #666;">I hold space for all emotions — nothing you feel
+                        <p style="font-size: 0.95rem; color: #666;">I hold space for all emotions - nothing you feel
                             will ever be dismissed.</p>
                     </div>
                     <div
@@ -154,6 +154,19 @@ const pageHtml = `
                         <p style="font-size: 0.9rem; color: #888;">Pythagorean &amp; Chaldean systems</p>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- SEO Section -->
+        <section style="padding: 80px 0px; background: #fff; border-top: 1px solid #f0f0f0;">
+            <div class="container" style="max-width: 900px; margin: 0 auto; text-align: left;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: var(--text-color);">Certified Reiki Grandmaster and Professional Tarot Reader</h2>
+                <p style="color: #666; margin-bottom: 15px; font-size: 1rem; line-height: 1.8;">
+                    With years of dedicated practice in holistic modalities, Shefali Soni stands as a leading <strong>certified Reiki Grandmaster</strong> and experienced <strong>intuitive tarot reader</strong>. Her unique journey into the spiritual arts began with a deep desire to help individuals overcome mental barriers, emotional trauma, and spiritual disconnect. By combining the ancient wisdom of <strong>crystal healing</strong>, numerology, and distance energy work, Shefali provides an integrated approach to wellness that transcends traditional boundaries.
+                </p>
+                <p style="color: #666; margin-bottom: 15px; font-size: 1rem; line-height: 1.8;">
+                    At Visions by Shefali, every online session is a personalized experience built on a foundation of empathy, trust, and profound spiritual insight. Whether you are seeking a detailed tarot reading to navigate life's crossroads or a past life regression session to heal deep-seated fears, Shefali's credentials and heart-centered approach ensure you are in safe, capable hands. Join a global community of clients who have discovered lasting peace, renewed energy, and life-changing clarity through these transformative healing practices.
+                </p>
             </div>
         </section>
 

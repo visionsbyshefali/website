@@ -165,6 +165,19 @@ const pageHtml = `
             </div>
         </section>
 
+        <!-- SEO Section -->
+        <section style="padding: 80px 0px; background: #fff; border-top: 1px solid #f0f0f0;">
+            <div class="container" style="max-width: 900px; margin: 0 auto; text-align: left;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: var(--text-color);">Comprehensive Online Energy Healing Services</h2>
+                <p style="color: #666; margin-bottom: 15px; font-size: 1rem; line-height: 1.8;">
+                    Our comprehensive suite of <strong>online energy healing services</strong> is specifically tailored to address your spiritual, emotional, and physical needs. From highly accurate <strong>intuitive tarot readings</strong> to restorative <strong>distance Reiki sessions</strong>, our holistic methods aim to bring you deep clarity and lasting peace.
+                </p>
+                <p style="color: #666; margin-bottom: 15px; font-size: 1rem; line-height: 1.8;">
+                    Whether you are struggling with anxiety and need the balancing effects of <strong>Crystal Therapy</strong>, or you want to uncover and resolve deep-seated karmic blockages through <strong>Past Life Regression</strong>, Shefali Soni provides a safe and transformative environment. We also specialize in Vastu consulting and Numerology to help you align your personal and professional spaces with positive universal energy. Start your healing journey today with a specialized session designed entirely around your soul's unique path.
+                </p>
+            </div>
+        </section>
+
         <!-- Help Choose Section -->
         <section
             style="padding: 120px 0px; background: var(--secondary-color);  opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;">

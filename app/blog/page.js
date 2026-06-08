@@ -74,7 +74,7 @@ export default function BlogPage() {
               lineHeight: 1.7,
             }}
           >
-            Deep dives into the healing arts — tarot, energy work, numerology, and more — to
+            Deep dives into the healing arts - tarot, energy work, numerology, and more - to
             support your journey of growth and self-discovery.
           </p>
         </div>

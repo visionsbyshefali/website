@@ -17,7 +17,7 @@ const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'temp
 const EMAILJS_USER_ID = 'jFkPRjeSxAVQzGKuw';
 const EMAILJS_ENDPOINT = 'https://api.emailjs.com/api/v1.0/email/send';
 
-/** Display number in “How to reach us” — set NEXT_PUBLIC_CONTACT_PHONE in .env.local */
+/** Display number in “How to reach us” - set NEXT_PUBLIC_CONTACT_PHONE in .env.local */
 const DEFAULT_BUSINESS_PHONE = '+91 95846 57937';
 const INSTAGRAM_URL = 'https://www.instagram.com/visionsbyshefali?igsh=MWJxcHZjMjFkeDhraA==';
 const WHATSAPP_URL = 'https://wa.me/919584657937';
@@ -178,7 +178,7 @@ export default function ContactView() {
 
         setFormNotice({
           type: 'success',
-          text: 'Thank you — your inquiry was sent. We will get back to you soon.',
+          text: 'Thank you - your inquiry was sent. We will get back to you soon.',
         });
         setName('');
         setEmail('');
@@ -203,7 +203,7 @@ export default function ContactView() {
 
   return (
     <main>
-      <section className={`${styles.sectionHero} visible`}>
+      <section className={`${styles.sectionHero} dark-hero visible`}>
         <div className="container hero-content">
           <span className={styles.tag}>Connect</span>
           <h1 className={styles.heroTitle}>Book Your Session</h1>

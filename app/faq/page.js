@@ -71,6 +71,19 @@ const pageHtml = `
             </div>
         </section>
 
+        <!-- SEO Section -->
+        <section style="padding: 80px 0px; background: #fff; border-top: 1px solid #f0f0f0;">
+            <div class="container" style="max-width: 900px; margin: 0 auto; text-align: left;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: var(--text-color);">Your Questions About Holistic Healing Answered</h2>
+                <p style="color: #666; margin-bottom: 15px; font-size: 1rem; line-height: 1.8;">
+                    If you are new to the world of energy work, you likely have questions about what an <strong>online tarot reading</strong> entails or how <strong>distance Reiki sessions</strong> actually work. We are dedicated to making holistic healing accessible and demystifying the processes behind <strong>Past Life Regression</strong>, <strong>Crystal Therapy</strong>, and Numerology. By offering transparent and straightforward answers, we empower you to take the next step on your spiritual journey with confidence and clarity.
+                </p>
+                <p style="color: #666; margin-bottom: 15px; font-size: 1rem; line-height: 1.8;">
+                    At Visions by Shefali, we ensure every session-whether focused on deep emotional release or finding a clear direction forward-is conducted with the highest level of professionalism and confidentiality. Browse our FAQ to learn more about how our expert-led online sessions can support your personal growth, providing you with profound insights and practical guidance right from the comfort of your own home.
+                </p>
+            </div>
+        </section>
+
         <!-- Help Section -->
         <section
             style="padding: 100px 0px; background: var(--secondary-color);  opacity: 1; transform: translateY(0px); transition: opacity 0.6s ease-out, transform 0.6s ease-out;">

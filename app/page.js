@@ -11,7 +11,7 @@ const pageHtml = `
             <div class="container hero-content">
                 <h1 class="hero-title">Heal, Grow &amp; <br>Thrive with <br>Intuitive Guidance</h1>
                 <p style="font-size: 1.25rem; margin-bottom: 40px; color: #444; max-width: 600px;">In this nurturing and
-                    safe space, you're empowered to shape the life you envision — embracing healing and growth as we
+                    safe space, you're empowered to shape the life you envision - embracing healing and growth as we
                     transform together.</p>
                 <div class="hero-btns">
                     <a href="/contact" class="btn">Book a Session</a>
@@ -43,7 +43,7 @@ const pageHtml = `
                         style="color: var(--primary-color); font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">Our
                         Approach</span>
                     <h2 class="section-title">Honour Your Healing Journey</h2>
-                    <p class="section-subtitle">True healing encompasses every dimension of your being — body, mind, and
+                    <p class="section-subtitle">True healing encompasses every dimension of your being - body, mind, and
                         soul working in harmony.</p>
                 </div>
                 <div class="grid-3">
@@ -120,7 +120,7 @@ const pageHtml = `
                             min · Online</span>
                         <h3 style="margin: 15px 0;">Psychic Healing</h3>
                         <p style="color: #666; margin-bottom: 25px;">A deep energetic cleanse to release heavy emotions,
-                            stress, and soul-level patterns — bringing back lightness and clarity.</p>
+                            stress, and soul-level patterns - bringing back lightness and clarity.</p>
                         <a href="/services"
                             style="font-weight: 600; color: var(--primary-color);">Explore Healing →</a>
                     </div>
@@ -141,7 +141,7 @@ const pageHtml = `
                         <span
                             style="color: var(--primary-color); font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">Meet
                             Your Guide</span>
-                        <h2 class="section-title" style="margin-top: 15px; margin-bottom: 30px;">Shefali Soni — Your
+                        <h2 class="section-title" style="margin-top: 15px; margin-bottom: 30px;">Shefali Soni - Your
                             <br>Healing Companion</h2>
 
                         <div class="guide-stats-row">
@@ -156,11 +156,11 @@ const pageHtml = `
                             emotions, energy, and the unseen layers that shape our lives.</p>
                         <p style="font-size: 1.15rem; color: #555; line-height: 1.8; margin-bottom: 35px;">I am a Reiki
                             Grandmaster, a Certified Hypnosis Practitioner, and an intuitive healer. My approach is
-                            simple and grounded — I believe in awareness, emotional safety, and guiding people back to
+                            simple and grounded - I believe in awareness, emotional safety, and guiding people back to
                             their own inner clarity.</p>
                         <blockquote
                             style="font-family: var(--heading-font); font-size: 1.8rem; color: var(--primary-color); font-style: italic; margin-bottom: 40px; border-left: 5px solid var(--primary-color); padding-left: 30px;">
-                            "Healing is not about fixing something broken — it's about understanding, releasing, and
+                            "Healing is not about fixing something broken - it's about understanding, releasing, and
                             realigning."</blockquote>
                         <a href="/contact" class="btn">Book a Session</a>
                     </div>
@@ -178,12 +178,12 @@ const pageHtml = `
                         style="color: var(--primary-color); font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">Why
                         Visions By Shefali</span>
                     <h2 class="section-title" style="margin-top: 15px;">A Space of Genuine Care</h2>
-                    <p style="color: #666; margin-top: 20px;">What makes our approach different — and why clients
+                    <p style="color: #666; margin-top: 20px;">What makes our approach different - and why clients
                         return.</p>
                 </div>
                 <div class="grid-4">
                     <div style="background: white; padding: 40px; border-radius: 40px; ">
-                        <h4 style="margin-bottom: 15px;">No Fear — Only Compassion</h4>
+                        <h4 style="margin-bottom: 15px;">No Fear - Only Compassion</h4>
                         <p style="font-size: 0.95rem; color: #666;">I never use fear-based practices. Every session is
                             held in a space of unconditional support and care.</p>
                     </div>
@@ -255,6 +255,19 @@ const pageHtml = `
                     <a href="/testimonials" style="color: var(--primary-color); font-weight: 600;">Read All Stories
                         →</a>
                 </div>
+            </div>
+        </section>
+
+        <!-- SEO Section -->
+        <section style="padding: 80px 0px; background: #fafafa; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
+            <div class="container" style="max-width: 900px; margin: 0 auto; text-align: left;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: var(--text-color);">Your Trusted Partner for Online Tarot Reading &amp; Energy Healing</h2>
+                <p style="color: #666; margin-bottom: 15px; font-size: 1rem; line-height: 1.8;">
+                    Welcome to Visions by Shefali, a globally recognized sanctuary for spiritual wellness. Whether you're seeking clarity through an <strong>intuitive tarot reading</strong>, profound emotional release via a <strong>Reiki healing session</strong>, or energetic balance through <strong>crystal therapy</strong>, Shefali Soni offers a compassionate, judgment-free space tailored to your journey. As a certified Reiki Grandmaster and expert holistic healer, Shefali helps clients worldwide break through mental blocks and reconnect with their higher selves.
+                </p>
+                <p style="color: #666; margin-bottom: 15px; font-size: 1rem; line-height: 1.8;">
+                    Our comprehensive remote healing services are designed to address the root causes of stress, anxiety, and spiritual stagnation. From exploring your life's purpose with <strong>Past Life Regression</strong> and <strong>Numerology</strong> to clearing stagnant energy through distance healing, our holistic approach ensures you receive the deepest level of care regardless of your physical location. Discover why over 500 happy clients across 15+ countries trust Visions by Shefali to guide them toward lasting clarity, emotional freedom, and inner peace.
+                </p>
             </div>
         </section>
 
